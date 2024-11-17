@@ -27,4 +27,4 @@ const plays = {
 }
 
 console.log(statement(invoice[0], plays));
-console.log(htmlStatement(invoice[0], plays));
+// console.log(htmlStatement(invoice[0], plays));
