@@ -29,5 +29,51 @@ describe('province', function() {
     expect(asia.profit).equal(292);
   })
 
+  it('zero demand', function () {
+    asia.demand = 0;
+    expect(asia.shortfall).equal(-25);
+    expect(asia.profit).equal(0);
+  })
+
+  it('empty string demand', function() {
+    asia.demand = '';
+    expect(asia.shortfall).NaN;
+    expect(asia.profit).NaN;
+  })
 })
 
+describe('no producers', function() {
+  let noProducers;
+  beforeEach(function () {
+    const data = {
+      name: "No prouducers",
+      producers: [],
+      demand: 30,
+      price: 20
+    };
+    noProducers = new Province(data);
+  })
+
+  it('shortfall', function() {
+    // assert 또는 expect를 사용할 수 있다
+    expect(noProducers.shortfall).equal(30);
+  })
+
+  it('profit', function() {
+    expect(noProducers.profit).equal(0);
+  })
+})
+
+describe('string for producers', function () {
+  it('', function () {
+    const data = {
+      name: 'String producers',
+      producers: '',
+      demand: 30,
+      price: 20
+    };
+
+    const prov = new Province(data);
+    expect(prov.shortfall).equal(0);
+  })
+})
