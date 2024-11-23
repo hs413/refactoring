@@ -1,14 +1,15 @@
 reading = { customer: 'ivan', quantity: 10, month: 5, year: 2024 }
 
 function client1 () {
-  const aReading = acquireReading();
-  const baseCharge = baseRate(aReading.month, aReading.year) * aReading.quantity;
+  const rawReading = acquireReading();
+  const aReading = new Reading(rawReading)
+  const basicChargeAmount  = aReading.baseCharge;
 }
 
 function client2 () {
-  const aReading = acquireReading();
-  const base = baseRate(aReading.month, aReading.year) * aReading.quantity;
-  const taxableCharge = Math.max(0, base - taxThreshold(aReading.year));
+  const rawReading = acquireReading();
+  const aReading = new Reading(rawReading)
+  const taxableCharge = aReading.taxableCharge
 }
 
 function client3 () {
@@ -42,6 +43,10 @@ class Reading {
   }
   get baseCharge() {
     return baseRate(this.month, this.year) * this.quantity
+  }
+
+  get taxableCharge() {
+    return Math.max(0, this.baseCharge - taxThreshold(this.year));
   }
 }
 
