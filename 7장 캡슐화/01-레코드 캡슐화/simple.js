@@ -15,11 +15,14 @@ getRawDataOfOrganization().name = newName // 쓰기
 // 클래스로 변경
 class Organization {
   constructor(data) {
-    this._data = data;
+    this._name = data.name;
+    this._country = data.country;
   }
 
-  set name(aString) {this._data.name = aString}
-  get name() {this._data.name}
+  get name() {this._name}
+  set name(aString) {this._name = aString}
+  get country() {this._country}
+  set country(aCountryCode) {this._country = aCountryCode}
 }
 
 const organization = new Organization({ name: "aaa", country: "BG" });
