@@ -17,13 +17,16 @@ class Organization {
   constructor(data) {
     this._data = data;
   }
+
+  set name(aString) {this._data.name = aString}
+  get name() {this._data.name}
 }
 
 const organization = new Organization({ name: "aaa", country: "BG" });
-function getRawDataOfOrganization() {
-  return organization._data;
-}
+
 function getOrganization() {
   return organization
 }
 
+result += `<h1>${getOrganization().name}</h1>`; // 읽기
+getOrganization().name = newName // 쓰기
