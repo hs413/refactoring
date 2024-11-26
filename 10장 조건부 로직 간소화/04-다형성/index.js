@@ -1,9 +1,13 @@
 function plumages(birds) {
-  return new Map(birds.map(b => [b.name, plumage(b)]))
+  return new Map(birds
+                  .map(b => createBird(b))
+                  .map(bird => [bird.name, plumage(bird)]))
 }
 
 function speeds(birds) {
-  return new Map(birds.map(b => [b.name, airSpeedVelocity(b)]))
+  return new Map(birds
+                  .map(b => createBird(b))
+                  .map(bird => [bird.name, airSpeedVelocity(bird)]))
 }
 
 function plumage(bird) {
@@ -17,11 +21,11 @@ function airSpeedVelocity(bird) {
 function createBird(bird) {
   switch (bird.type) {
     case '유럽 제비':
-      return
+      return new EuropeanSwallow(bird);
     case '아프리카 제비':
-      return ;
+      return new AfricanSwallow(bird);
     case '노르웨이 파랑 앵무':
-      return ;
+      return new NorwegianBlueParrot(bird);
     default:
       return new Bird(bird);
   }
